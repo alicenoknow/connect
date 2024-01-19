@@ -19,3 +19,12 @@ export enum SelectorView {
   MOBILE_ALL,
   CONNECTING
 }
+
+type FooterText = string;
+
+interface FooterLink {
+  url: string;
+  name: string;
+}
+
+export type FooterTextData = FooterText | FooterLink;

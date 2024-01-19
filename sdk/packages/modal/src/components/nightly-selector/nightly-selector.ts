@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { tailwindElement } from '../../shared/tailwind.element'
 import style from './nightly-selector.css'
-import { SelectorView, WalletSelectorItem } from '../../utils/types'
+import { SelectorView, WalletSelectorItem, FooterTextData } from '../../utils/types'
 import { styleMap } from 'lit/directives/style-map.js'
 import '../nightly-desktop-main/nightly-desktop-main'
 import '../nightly-connect-wallet/nightly-connect-wallet'
@@ -47,6 +47,9 @@ export class NightlySelector extends LitElement {
 
   @property({ type: Object })
   qrConfigOverride: Partial<XMLOptions> = {}
+
+  @property({ type: Array })
+  footerTextData: ReadonlyArray<FooterTextData> | undefined = []
 
   // state
 
@@ -321,7 +324,7 @@ export class NightlySelector extends LitElement {
           >
             ${this.renderCurrent()}
           </div>
-          <nightly-footer .termsOfServiceLink="" .privacyPolicyLink=""/>
+          <nightly-footer .footerTextData=${this.footerTextData} />
         </div>
       </div>
     `

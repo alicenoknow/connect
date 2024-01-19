@@ -13,7 +13,7 @@ import Binance from '../../static/svg/BinanceIcon.svg'
 import Sollet from '../../static/svg/SolletIcon.svg'
 import NightlyIcon from '../../static/svg/NightlyIcon.svg'
 import ChainIcon from '../../static/svg/ChainIcon.svg'
-import { WalletSelectorItem } from '../../utils/types'
+import { FooterTextData, WalletSelectorItem } from '../../utils/types'
 
 const meta = {
   title: 'nightly-selector',
@@ -38,6 +38,7 @@ interface NightlyModalArgs {
   sessionId: string
   connecting: boolean
   relay: string
+  footerTextData: ReadonlyArray<FooterTextData> | undefined
 }
 type Story = StoryObj<NightlyModalArgs & { open: boolean }>
 
@@ -60,6 +61,7 @@ export const Default: Story = (args: NightlyModalArgs) => {
           .sessionId=${args.sessionId}
           ?connecting=${args.connecting}
           .relay=${args.relay}
+          .footerTextData=${args.footerTextData}
         ></nightly-selector>
       `
     : html``
@@ -114,5 +116,6 @@ Default.args = {
     'fsdhfdzfsdhgfzghggdfhbgchgbdfnvfbxhncvfjhzxdhgbhghfgfvzhfgjhgszdhgzxdfhgfzxdjfuhdfhgd',
   connecting: true,
   relay: 'https://nc2.nightly.app',
-  open: true
+  open: true,
+  footerTextData: ["By connecting, you agree to Common's ", { url: "", name: "Terms of Service" }, " and its ", { url: "", name: "Privacy Policy" }, "."],
 }

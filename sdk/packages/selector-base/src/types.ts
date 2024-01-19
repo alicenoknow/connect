@@ -32,3 +32,12 @@ export enum ConnectionType {
   Nightly = 'Nightly',
   WalletStandard = 'WalletStandard'
 }
+
+type FooterText = string;
+
+interface FooterLink {
+  url: string;
+  name: string;
+}
+
+export type FooterTextData = FooterText | FooterLink;

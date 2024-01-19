@@ -2,22 +2,29 @@ import { customElement, property } from 'lit/decorators.js'
 import { tailwindElement } from '../../shared/tailwind.element'
 import style from './nightly-footer.css'
 import { LitElement, html } from 'lit'
+import { FooterTextData } from '../../utils/types'
+
 
 @customElement('nightly-footer')
 export class NightlyFooter extends LitElement {
   static styles = tailwindElement(style)
 
-  @property()
-  termsOfServiceLink: string = ""
+  @property({ type: Array })
+  footerTextData: ReadonlyArray<FooterTextData> | undefined= [];
 
-  @property()
-  privacyPolicyLink: string = ""
+  parseTextData = (item: FooterTextData) => {
+    if (typeof item === 'string') {
+      return html`${item}`;
+    } else {
+      return html`<a href=${item.url}>${item.name}</a>`;
+    }    
+  }
 
   render() {
     return html`
       <div class="nc_footerContent">
         <div class="nc_footerText">
-          By connecting, you agree to Common's <a href=${this.termsOfServiceLink}>Terms of Service</a> and its <a href=${this.privacyPolicyLink}>Privacy Policy</a>.
+          ${this.footerTextData && this.footerTextData.map(this.parseTextData)}
         </div>
       </div>
       <div class="nc_footerBackground" />

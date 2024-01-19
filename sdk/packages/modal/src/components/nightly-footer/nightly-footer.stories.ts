@@ -9,7 +9,7 @@ const meta = {
     layout: 'centered'
   },
   render: (args) => {
-    return html`<nightly-footer .termsOfServiceLink=${args.termsOfServiceLink} .privacyPolicyLink=${args.privacyPolicyLink}/>`
+    return html`<nightly-footer .footerTextData=${args.footerTextData} />`
   }
 } satisfies Meta<NightlyFooter>
 
@@ -19,7 +19,6 @@ type Story = StoryObj<NightlyFooter>
 export const Default: Story = {
   name: 'Default',
   args: {
-    termsOfServiceLink: "",
-    privacyPolicyLink: "",
+    footerTextData: ["By connecting, you agree to Common's ", { url: "", name: "Terms of Service" }, " and its ", { url: "", name: "Privacy Policy" }, "."],
   }
 }
