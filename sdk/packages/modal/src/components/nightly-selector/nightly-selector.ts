@@ -106,7 +106,7 @@ export class NightlySelector extends LitElement {
       () => {
         this.onClose()
       },
-      this.mobileQuery.matches ? 240 : 80
+      300
     )
   }
 
@@ -297,7 +297,7 @@ export class NightlySelector extends LitElement {
   render() {
     return html`
       <div
-        class="nc_modalOverlay ${this.fireClosingAnimation ? 'nc_modalClosingAnimation' : ''}"
+        class="nc_modalOverlay ${this.fireClosingAnimation ? 'nc_modalOverlayClosingAnimation' : ''}"
         @click=${this.handleClose}
       >
         <div
@@ -305,7 +305,7 @@ export class NightlySelector extends LitElement {
             e.stopPropagation()
           }}
           class="nc_modalWrapper ${this.fireClosingAnimation
-            ? 'nc_modalMobileSlideOutAnimation'
+            ? 'nc_modalSlideOutAnimation'
             : ''}"
         >
           <nightly-header .onClose=${this.handleClose}></nightly-header>

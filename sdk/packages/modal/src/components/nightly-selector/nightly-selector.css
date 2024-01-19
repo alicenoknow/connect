@@ -1,20 +1,22 @@
+/* duration | easing-function | delay | iteration-count | direction | fill-mode | play-state | name */
+
 .nc_modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  animation: 100ms ease-out 0s 1 fadeIn normal forwards;
+  animation: 300ms linear 0s 1 normal forwards fadeIn;
   z-index: 100;
   background-color: var(--nc-color-overlay);
-  backdrop-filter: blur(10px);
 }
 
 .nc_modalWrapper {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  opacity: 0;
+  animation: 50ms linear 250ms 1 normal forwards slideIn;
   width: 720px;
   display: flex;
   flex-direction: column;
@@ -29,12 +31,16 @@
   transition: height 250ms;
 }
 
-.nc_modalClosingAnimation {
-  animation: 100ms ease-out 0s 1 fadeOut normal forwards;
-}
-
 .nc_modalViewEntryTransition {
   animation: 300ms ease-out 0s 1 viewsFadeIn normal forwards;
+}
+
+.nc_modalOverlayClosingAnimation {
+  animation: 300ms linear 0ms 1 normal forwards fadeOut;
+}
+
+.nc_modalSlideOutAnimation {
+  animation: 300ms ease-out 0s 1 normal forwards slideOut;
 }
 
 @media (max-width: 1080px) {
@@ -51,7 +57,7 @@
 
 @media (max-width: 640px) {
   .nc_modalOverlay {
-    animation: 250ms ease-out 0s 1 fadeInMobile normal forwards;
+    animation: 250ms ease-out 0s 1 normal forwards fadeIn;
     background-color: transparent;
     backdrop-filter: blur(0);
   }
@@ -62,7 +68,8 @@
     bottom: -20px;
     width: 100%;
     transform-origin: 0 100%;
-    animation: 250ms ease-out 0s 1 slideIn normal forwards;
+    animation: 250ms ease-out 0s 1 normal forwards slideInMobile;
+    opacity: 1;
   }
 
   .nc_modalContent {
@@ -72,33 +79,33 @@
   }
 
   .nc_modalClosingAnimation {
-    animation: 250ms ease-out 0s 1 fadeOutMobile normal forwards;
+    animation: 300ms ease-out 0s 1 normal forwards fadeOut;
   }
 
-  .nc_modalMobileSlideOutAnimation {
-    animation: 250ms ease-out 0s 1 slideOut normal forwards;
+  .nc_modalSlideOutAnimation {
+    animation: 250ms ease-out 0s 1 normal forwards slideOutMobile;
+  }
+
+  @keyframes slideInMobile {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideOutMobile {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+    }
   }
 }
 
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeInMobile {
   0% {
     background-color: transparent;
     backdrop-filter: blur(0);
@@ -109,7 +116,7 @@
   }
 }
 
-@keyframes fadeOutMobile {
+@keyframes fadeOut {
   0% {
     background-color: var(--nc-color-overlay);
     backdrop-filter: blur(10px);
@@ -122,21 +129,26 @@
 
 @keyframes slideIn {
   0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
+    opacity: 0;
+    transform: translateX(-50%) translateY(-60%);
+  } 
+  100% { 
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%);
+  } 
+} 
 
 @keyframes slideOut {
   0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-}
+    opacity: 1;
+    transform: translateX(-50%) translateY(-50%);
+  } 
+  100% { 
+    opacity: 0;
+    transform: translateX(-50%) translateY(-40%);
+  } 
+} 
+
 
 @keyframes viewsFadeIn {
   0% {
