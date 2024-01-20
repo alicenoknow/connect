@@ -18,7 +18,7 @@ import {
   persistStandardDisconnectForNetwork,
   sleep,
   triggerConnect,
-  FooterTextData
+  AdditionalModalConfig
 } from '@nightlylabs/wallet-selector-base'
 
 import { type Signer as InjectedSigner } from '@polkadot/api/types'
@@ -149,7 +149,7 @@ export class NightlyConnectAdapter implements Injected {
       stylesOverride?: string
       qrConfigOverride?: Partial<XMLOptions>
     },
-    footerTextData?: FooterTextData[]
+    additionalModalConfig?: AdditionalModalConfig
   ) => {
     if (!useEagerConnect) {
       clearSessionIdForNetwork(appInitData.network)
@@ -169,7 +169,7 @@ export class NightlyConnectAdapter implements Injected {
       uiOverrides?.variablesOverride,
       uiOverrides?.stylesOverride,
       uiOverrides?.qrConfigOverride,
-      footerTextData,
+      additionalModalConfig,
     )
 
     const [app, metadataWallets] = await NightlyConnectAdapter.initApp(appInitData)
@@ -194,7 +194,7 @@ export class NightlyConnectAdapter implements Injected {
       stylesOverride?: string
       qrConfigOverride?: Partial<XMLOptions>
     },
-    footerTextData?: FooterTextData[]
+    additionalModalConfig?: AdditionalModalConfig
   ) => {
     if (!useEagerConnect) {
       clearSessionIdForNetwork(appInitData.network)
@@ -214,7 +214,7 @@ export class NightlyConnectAdapter implements Injected {
       uiOverrides?.variablesOverride,
       uiOverrides?.stylesOverride,
       uiOverrides?.qrConfigOverride,
-      footerTextData
+      additionalModalConfig
     )
 
     adapter._loading = true
@@ -246,7 +246,7 @@ export class NightlyConnectAdapter implements Injected {
       stylesOverride?: string
       qrConfigOverride?: Partial<XMLOptions>
     },
-    footerTextData?: FooterTextData[]
+    additionalModalConfig?: AdditionalModalConfig
   ) => {
     if (!useEagerConnect) {
       clearSessionIdForNetwork(appInitData.network)
@@ -266,7 +266,7 @@ export class NightlyConnectAdapter implements Injected {
       uiOverrides?.variablesOverride,
       uiOverrides?.stylesOverride,
       uiOverrides?.qrConfigOverride,
-      footerTextData
+      additionalModalConfig
     )
 
     return adapter

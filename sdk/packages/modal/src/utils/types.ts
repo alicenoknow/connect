@@ -28,3 +28,7 @@ interface FooterLink {
 }
 
 export type FooterTextData = FooterText | FooterLink;
+
+export interface AdditionalModalConfig {
+  footerTextData: ReadonlyArray<FooterTextData> | undefined
+}
