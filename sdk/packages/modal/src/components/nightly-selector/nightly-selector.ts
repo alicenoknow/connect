@@ -2,11 +2,12 @@ import { LitElement, html } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { tailwindElement } from '../../shared/tailwind.element'
 import style from './nightly-selector.css'
-import { SelectorView, WalletSelectorItem } from '../../utils/types'
+import { SelectorView, WalletSelectorItem, AdditionalModalConfig } from '../../utils/types'
 import { styleMap } from 'lit/directives/style-map.js'
 import '../nightly-desktop-main/nightly-desktop-main'
 import '../nightly-connect-wallet/nightly-connect-wallet'
 import '../nightly-header/nightly-header'
+import '../nightly-footer/nightly-footer'
 import '../nightly-mobile-all-wallets/nightly-mobile-all-wallets'
 import '../nightly-mobile-qr/nightly-mobile-qr'
 import '../nightly-mobile-main/nightly-mobile-main'
@@ -46,6 +47,9 @@ export class NightlySelector extends LitElement {
 
   @property({ type: Object })
   qrConfigOverride: Partial<XMLOptions> = {}
+
+  @property({ type: Object })
+  additionalModalConfig: AdditionalModalConfig | undefined
 
   // state
 
@@ -105,7 +109,7 @@ export class NightlySelector extends LitElement {
       () => {
         this.onClose()
       },
-      this.mobileQuery.matches ? 240 : 80
+      300
     )
   }
 
@@ -296,7 +300,7 @@ export class NightlySelector extends LitElement {
   render() {
     return html`
       <div
-        class="nc_modalOverlay ${this.fireClosingAnimation ? 'nc_modalClosingAnimation' : ''}"
+        class="nc_modalOverlay ${this.fireClosingAnimation ? 'nc_modalOverlayClosingAnimation' : ''}"
         @click=${this.handleClose}
       >
         <div
@@ -304,7 +308,7 @@ export class NightlySelector extends LitElement {
             e.stopPropagation()
           }}
           class="nc_modalWrapper ${this.fireClosingAnimation
-            ? 'nc_modalMobileSlideOutAnimation'
+            ? 'nc_modalSlideOutAnimation'
             : ''}"
         >
           <nightly-header .onClose=${this.handleClose}></nightly-header>
@@ -320,6 +324,7 @@ export class NightlySelector extends LitElement {
           >
             ${this.renderCurrent()}
           </div>
+          <nightly-footer .footerTextData=${this.additionalModalConfig?.footerTextData} />
         </div>
       </div>
     `

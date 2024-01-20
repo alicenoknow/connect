@@ -17,7 +17,8 @@ import {
   persistStandardConnectForNetwork,
   persistStandardDisconnectForNetwork,
   sleep,
-  triggerConnect
+  triggerConnect,
+  AdditionalModalConfig
 } from '@nightlylabs/wallet-selector-base'
 
 import { type Signer as InjectedSigner } from '@polkadot/api/types'
@@ -147,7 +148,8 @@ export class NightlyConnectAdapter implements Injected {
       variablesOverride?: object
       stylesOverride?: string
       qrConfigOverride?: Partial<XMLOptions>
-    }
+    },
+    additionalModalConfig?: AdditionalModalConfig
   ) => {
     if (!useEagerConnect) {
       clearSessionIdForNetwork(appInitData.network)
@@ -166,7 +168,8 @@ export class NightlyConnectAdapter implements Injected {
       anchorRef,
       uiOverrides?.variablesOverride,
       uiOverrides?.stylesOverride,
-      uiOverrides?.qrConfigOverride
+      uiOverrides?.qrConfigOverride,
+      additionalModalConfig,
     )
 
     const [app, metadataWallets] = await NightlyConnectAdapter.initApp(appInitData)
@@ -190,7 +193,8 @@ export class NightlyConnectAdapter implements Injected {
       variablesOverride?: object
       stylesOverride?: string
       qrConfigOverride?: Partial<XMLOptions>
-    }
+    },
+    additionalModalConfig?: AdditionalModalConfig
   ) => {
     if (!useEagerConnect) {
       clearSessionIdForNetwork(appInitData.network)
@@ -209,7 +213,8 @@ export class NightlyConnectAdapter implements Injected {
       anchorRef,
       uiOverrides?.variablesOverride,
       uiOverrides?.stylesOverride,
-      uiOverrides?.qrConfigOverride
+      uiOverrides?.qrConfigOverride,
+      additionalModalConfig
     )
 
     adapter._loading = true
@@ -240,7 +245,8 @@ export class NightlyConnectAdapter implements Injected {
       variablesOverride?: object
       stylesOverride?: string
       qrConfigOverride?: Partial<XMLOptions>
-    }
+    },
+    additionalModalConfig?: AdditionalModalConfig
   ) => {
     if (!useEagerConnect) {
       clearSessionIdForNetwork(appInitData.network)
@@ -259,7 +265,8 @@ export class NightlyConnectAdapter implements Injected {
       anchorRef,
       uiOverrides?.variablesOverride,
       uiOverrides?.stylesOverride,
-      uiOverrides?.qrConfigOverride
+      uiOverrides?.qrConfigOverride,
+      additionalModalConfig
     )
 
     return adapter
